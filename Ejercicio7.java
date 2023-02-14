@@ -24,7 +24,19 @@ public class Ejercicio7 {
                 }
                 break;
             case "derecha":
+                for (int i = 0; i < height; i++) {
+                    for (int j = 0; j < i + 1; j++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
 
+                for (int i = height - 1; i > 0; i--) {
+                    for (int j = 0; j < i; j++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
                 break;
             case "abajo":
                 for (int i = height; i >= 1; i--) {
@@ -38,9 +50,28 @@ public class Ejercicio7 {
                 }
                 break;
             case "izquierda":
+                for (int i = 0; i < height; i++) {
+                    for (int j = height - i; j > 1; j--) {
+                        System.out.print(" ");
+                    }
+                    for (int j = 0; j < i + 1; j++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
 
+                for (int i = height - 1; i > 0; i--) {
+                    for (int j = height - i; j > 0; j--) {
+                        System.out.print(" ");
+                    }
+                    for (int j = 0; j < i; j++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
                 break;
             default:
                 System.out.println("Opción inválida");
         }
-}}
+    }
+}
