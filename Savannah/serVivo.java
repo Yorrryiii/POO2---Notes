@@ -11,7 +11,6 @@ public class serVivo{
 
 
     public serVivo(String nombre, int edad, String sexo) {
-        // Constructor por defecto
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
