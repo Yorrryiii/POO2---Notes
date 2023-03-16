@@ -1,11 +1,11 @@
-package Parcial2021;
+package empresa;
 
 public class Empresa {
     private int dinero;
     private int trabajoPendiente;
-    private DNI[] empleados;
+    private Trabajador[] empleados;
 
-    public Empresa(int dinero, int trabajoPendiente, DNI[] empleados) {
+    public Empresa(int dinero, int trabajoPendiente, Trabajador[] empleados) {
         this.dinero = dinero;
         this.trabajoPendiente = trabajoPendiente;
         this.empleados = empleados;
@@ -17,6 +17,7 @@ public class Empresa {
 
     public void reducirDinero(int dinero) {
         this.dinero -= dinero;
+        System.out.println("La empresa ha perdido " + dinero + "€, ahora tiene " + this.dinero + "€");
         if (this.dinero < 0) {
             System.out.println("La empresa esta en números rojos");
         }
@@ -30,4 +31,13 @@ public class Empresa {
         this.trabajoPendiente -= trabajoPendiente;
     }
 
+    public void simulaUnDia() {
+        for (Trabajador empleado : this.empleados) {
+            empleado.trabaja(this);
+        }
+    }
+
+    public boolean bancarrota(){
+        return this.dinero <= 0;
+    }
 }

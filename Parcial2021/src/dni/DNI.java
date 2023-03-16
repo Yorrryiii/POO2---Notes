@@ -1,4 +1,4 @@
-package Parcial2021;
+package dni;
 
 public class DNI {
     // 1.1
