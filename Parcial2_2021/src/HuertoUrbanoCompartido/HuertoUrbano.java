@@ -1,5 +1,7 @@
 package HuertoUrbanoCompartido;
 
+import Excepciones.AguaInsuficienteException;
+
 public class HuertoUrbano {
     private double tamano;
     private Parcela[] parcelas;
@@ -13,8 +15,6 @@ public class HuertoUrbano {
         this.tamano = tamano;
         this.parcelas = new Parcela[0];
     }
-
-    
 
     public double getMetrosCuadrados() {
         return tamano;
@@ -52,5 +52,30 @@ public class HuertoUrbano {
 
     public double getSuperficieOcupada() {
         return getSuperficieTotal();
+    }
+
+    public void regar(int litrosAgua) throws AguaInsuficienteException {
+        for (Parcela parcela : getParcelas()) {
+            for (Cultivo cultivo : parcela.getCultivos()) {
+                int litrosPorPlanta = 0;
+                switch (cultivo.getNecesidadAgua()) {
+                    case "Alta":
+                        litrosPorPlanta = 3;
+                        break;
+                    case "Media":
+                        litrosPorPlanta = 2;
+                        break;
+                    case "Baja":
+                        litrosPorPlanta = 1;
+                        break;
+                }
+                int litrosNecesarios = litrosPorPlanta * cultivo.getCantidadPlantas();
+                if (litrosAgua < litrosNecesarios) {
+                    throw new AguaInsuficienteException("No hay suficiente agua para regar todas las plantas");
+                }
+                litrosAgua -= litrosNecesarios;
+            }
+        }
+        System.out.println("He regado todas las plantas del huerto");
     }
 }
