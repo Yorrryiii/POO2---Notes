@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import Excepciones.PruebaRiego;
 import HuertoUrbanoCompartido.HelperHuerto;
 import HuertoUrbanoCompartido.HuertoUrbano;
+import HuertoUrbanoCompartido.Persistencia;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,6 +23,13 @@ public class Main {
 
         // riega el huerto con 10 litros de agua
         PruebaRiego.regarHuerto(huerto, 10);
+
+        try {
+            Persistencia.toFile(huerto, "text.txt");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
 

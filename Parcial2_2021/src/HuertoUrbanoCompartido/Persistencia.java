@@ -22,6 +22,7 @@ public class Persistencia {
         HuertoUrbano huerto = new HuertoUrbano(metrosCuadrados);
         String line;
         while ((line = reader.readLine()) != null) {
+            // Lo separo por espacios
             String[] parts = line.split(" ");
             int idCliente = Integer.parseInt(parts[0]);
             int metrosCuadradosParcela = Integer.parseInt(parts[1]);
