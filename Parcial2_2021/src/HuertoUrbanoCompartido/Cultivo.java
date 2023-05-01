@@ -1,45 +1,38 @@
-package HuertoUrbanoCompartido;
+package huertoUrbanoCompartido;
 
 public class Cultivo {
     private String nombre;
-    private String necesidadAgua;
+    private String necesidadesAgua;
     private int cantidadPlantas;
-
-    public Cultivo(String nombre, String necesidadAgua, int cantidadPlantas) {
+    
+    public Cultivo(String nombre, String necesidadesAgua, int cantidadPlantas) {
         this.nombre = nombre;
-        this.necesidadAgua = necesidadAgua;
+        this.necesidadesAgua = necesidadesAgua;
         this.cantidadPlantas = cantidadPlantas;
     }
-
-    public Cultivo(String nombreCultivo, int cantidadPlantas2) {
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getNecesidadAgua() {
-        return necesidadAgua;
+    
+    public String getNecesidadesAgua() {
+        return necesidadesAgua;
     }
-
-    public void setNecesidadAgua(String necesidadAgua) {
-        this.necesidadAgua = necesidadAgua;
+    
+    public void setNecesidadesAgua(String necesidadesAgua) {
+        this.necesidadesAgua = necesidadesAgua;
     }
-
+    
     public int getCantidadPlantas() {
         return cantidadPlantas;
     }
-
+    
     public void setCantidadPlantas(int cantidadPlantas) {
         this.cantidadPlantas = cantidadPlantas;
     }
-
-    @Override
-    public String toString() {
-        return "Cultivo [cantidadPlantas=" + cantidadPlantas + ", nombre=" + nombre + ", necesidadAgua=" + necesidadAgua + "]";
-    }
 }
+

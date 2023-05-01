@@ -1,64 +1,40 @@
-package HuertoUrbanoCompartido;
+package huertoUrbanoCompartido;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parcela {
-    private double tamano;
+    private double tamaño;
     private Cliente cliente;
-    private Cultivo[] cultivos;
+    private List<Cultivo> cultivos;
 
-    public Parcela(double tamano, Cliente cliente, Cultivo[] cultivos) {
-        this.tamano = tamano;
+    public Parcela(double tamaño, Cliente cliente) {
+        this.tamaño = tamaño;
         this.cliente = cliente;
-        this.cultivos = cultivos;
+        this.cultivos = new ArrayList<>();
     }
 
-    public Parcela(String nombrePlanta, double superficie, int cantidad, double distanciaAcomunales) {
-        this.tamano = superficie;
-        this.cliente = new Cliente("Cliente", "Cliente", "Cliente");
-        this.cultivos = new Cultivo[] { new Cultivo(nombrePlanta, "Baja", cantidad) };
+    public double getTamaño() {
+        return tamaño;
     }
 
-    public Parcela(int idCliente, int metrosCuadradosParcela) {
-        this.tamano = metrosCuadradosParcela;
-        this.cliente = new Cliente("Cliente", "Cliente", "Cliente");
-        this.cultivos = new Cultivo[] { new Cultivo("Planta", "Baja", 1) };
-    }
-
-    public double getMetrosCuadrados() {
-        return tamano;
-    }
-
-    public void setTamano(double tamano) {
-        this.tamano = tamano;
+    public void setTamaño(double tamaño) {
+        this.tamaño = tamaño;
     }
 
     public Cliente getCliente() {
         return cliente;
     }
 
-    public Cultivo[] getCultivos() {
-        return cultivos;
-    }
-
-    public void setCultivos(Cultivo[] cultivos) {
-        this.cultivos = cultivos;
-    }
-
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public void addCultivo(Cultivo cultivo) {
-        Cultivo[] cultivos = getCultivos();
-        Cultivo[] newCultivos = new Cultivo[cultivos.length + 1];
-        for (int i = 0; i < cultivos.length; i++) {
-            newCultivos[i] = cultivos[i];
-        }
-        newCultivos[newCultivos.length - 1] = cultivo;
-        setCultivos(newCultivos);
+    public List<Cultivo> getCultivos() {
+        return cultivos;
     }
 
-    @Override
-    public String toString() {
-        return "Parcela [cliente=" + cliente + ", cultivos=" + cultivos + ", tamano=" + tamano + "]";
+    public void addCultivo(Cultivo cultivo) {
+        cultivos.add(cultivo);
     }
 }

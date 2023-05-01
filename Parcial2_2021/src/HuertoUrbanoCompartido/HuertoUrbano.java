@@ -1,81 +1,63 @@
-package HuertoUrbanoCompartido;
+package huertoUrbanoCompartido;
 
-import Excepciones.AguaInsuficienteException;
+import java.util.ArrayList;
+import java.util.List;
+
+import excepciones.AguaInsuficienteException;
 
 public class HuertoUrbano {
-    private double tamano;
-    private Parcela[] parcelas;
+    private double tamaño;
+    private List<Parcela> parcelas;
 
-    public HuertoUrbano(double tamano, Parcela[] parcelas) {
-        this.tamano = tamano;
-        this.parcelas = parcelas;
+    public HuertoUrbano(double tamaño) {
+        this.tamaño = tamaño;
+        this.parcelas = new ArrayList<>();
     }
 
-    public HuertoUrbano(int tamano) {
-        this.tamano = tamano;
-        this.parcelas = new Parcela[0];
+    public double getTamaño() {
+        return tamaño;
     }
 
-    public double getMetrosCuadrados() {
-        return tamano;
+    public void setTamaño(double tamaño) {
+        this.tamaño = tamaño;
     }
 
-    public Parcela[] getParcelas() {
+    public List<Parcela> getParcelas() {
         return parcelas;
     }
 
-    public void setParcelas(Parcela[] parcelas) {
-        this.parcelas = parcelas;
-    }
-
     public void addParcela(Parcela parcela) {
-        Parcela[] parcelas = getParcelas();
-        Parcela[] newParcelas = new Parcela[parcelas.length + 1];
-        for (int i = 0; i < parcelas.length; i++) {
-            newParcelas[i] = parcelas[i];
-        }
-        newParcelas[newParcelas.length - 1] = parcela;
-        setParcelas(newParcelas);
+        parcelas.add(parcela);
     }
 
-    public double getSuperficieTotal() {
-        double superficieTotal = 0;
-        for (Parcela parcela : getParcelas()) {
-            superficieTotal += parcela.getMetrosCuadrados();
-        }
-        return superficieTotal;
-    }
-
-    public double getSuperficieDisponible() {
-        return getMetrosCuadrados() - getSuperficieTotal();
-    }
-
-    public double getSuperficieOcupada() {
-        return getSuperficieTotal();
-    }
-
-    public void regar(int litrosAgua) throws AguaInsuficienteException {
-        for (Parcela parcela : getParcelas()) {
-            for (Cultivo cultivo : parcela.getCultivos()) {
-                int litrosPorPlanta = 0;
-                switch (cultivo.getNecesidadAgua()) {
-                    case "Alta":
-                        litrosPorPlanta = 3;
-                        break;
-                    case "Media":
-                        litrosPorPlanta = 2;
-                        break;
-                    case "Baja":
-                        litrosPorPlanta = 1;
-                        break;
+    public void regar(double litrosAgua) throws AguaInsuficienteException {
+        double litrosRestantes = litrosAgua;
+        
+        for (Parcela parcela : parcelas) {
+            List<Cultivo> cultivos = parcela.getCultivos();
+            
+            for (Cultivo cultivo : cultivos) {
+                int cantidadPlantas = cultivo.getCantidadPlantas();
+                String necesidadesAgua = cultivo.getNecesidadesAgua();
+                double litrosConsumidos = 0.0;
+                
+                if (necesidadesAgua.equals("alta")) {
+                    litrosConsumidos = cantidadPlantas * 3;
+                } else if (necesidadesAgua.equals("media")) {
+                    litrosConsumidos = cantidadPlantas * 2;
+                } else if (necesidadesAgua.equals("baja")) {
+                    litrosConsumidos = cantidadPlantas * 1;
                 }
-                int litrosNecesarios = litrosPorPlanta * cultivo.getCantidadPlantas();
-                if (litrosAgua < litrosNecesarios) {
-                    throw new AguaInsuficienteException("No hay suficiente agua para regar todas las plantas");
+                
+                if (litrosConsumidos > litrosRestantes) {
+                    throw new AguaInsuficienteException("Agua insuficiente. No se pudo regar todo.");
                 }
-                litrosAgua -= litrosNecesarios;
+                
+                litrosRestantes -= litrosConsumidos;
             }
         }
-        System.out.println("He regado todas las plantas del huerto");
+        
+        System.out.println("He regado todo.");
     }
 }
+

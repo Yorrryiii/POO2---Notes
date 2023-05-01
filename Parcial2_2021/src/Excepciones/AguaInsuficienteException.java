@@ -1,7 +1,7 @@
-package Excepciones;
+package excepciones;
 
 public class AguaInsuficienteException extends Exception{
-    public AguaInsuficienteException(String message) {
-        super(message);
+    public AguaInsuficienteException(String mensaje) {
+        super(mensaje);
     }
 }
