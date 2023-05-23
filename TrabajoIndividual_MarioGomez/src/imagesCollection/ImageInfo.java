@@ -18,7 +18,7 @@ public class ImageInfo {
     public ImageInfo(String path) throws IOException {
         this.path = path;
 
-        // Leemps la imagen y obtiene su ancho y alto
+        // Leemos la imagen y obtiene su ancho y alto
         BufferedImage image = ImageIO.read(new File(path));
         this.ancho = image.getWidth();
         this.alto = image.getHeight();
