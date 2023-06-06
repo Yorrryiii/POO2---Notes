@@ -28,6 +28,7 @@ public class ImageLibrary {
 
     // Método para generar la jerarquía de carpetas con un número aleatorio de carpetas en cada nivel
     public void generateFolderStructure(String rootPath, int maxFoldersPerLevel, int maxDepth, List<String> folderNames) throws IOException {
+        // Creo la carpeta raíz
         generateFolderStructure(rootPath, maxFoldersPerLevel, maxDepth, folderNames, 0);
     }
 
