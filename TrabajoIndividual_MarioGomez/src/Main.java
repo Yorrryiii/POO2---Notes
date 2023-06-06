@@ -71,9 +71,7 @@ public class Main {
             }
 
             // Recorrido de todas las carpetas generadas
-            Files.walk(Paths.get("images"))
-                .filter(Files::isDirectory)
-                .forEach(folderPath -> {
+            Files.walk(Paths.get("images")).filter(Files::isDirectory).forEach(folderPath -> {
                     try {
                         // Creación de imágenes en cada carpeta
                         int numImages = random.nextInt(10) + 1; // Generar un número aleatorio entre 1 y 10 para las imágenes
@@ -88,6 +86,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        // Llamamos a App.java para que se abra automáticamente
         SwingUtilities.invokeLater(() -> {
             App app = new App();
             app.setVisible(true);
