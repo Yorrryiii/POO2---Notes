@@ -74,6 +74,7 @@ public class Main {
             Files.walk(Paths.get("images")).filter(Files::isDirectory).forEach(folderPath -> {
                     try {
                         // Creación de imágenes en cada carpeta
+                        // Hay que tener en cuenta que puede crear 0 imagenes, por lo que puede lanzar una excepción
                         int numImages = random.nextInt(10) + 1; // Generar un número aleatorio entre 1 y 10 para las imágenes
                         createImagesInFolder(folderPath, imageLibrary, numImages, colors, random.nextInt(20) + 1, random, formats, width, height);
                     } catch (IOException e) {
