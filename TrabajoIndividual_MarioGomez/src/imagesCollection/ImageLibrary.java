@@ -17,20 +17,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-
-// Metadata
-// import org.apache.commons.imaging.Imaging;
-// import org.apache.commons.imaging.common.RationalNumber;
-// import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
-// import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
-// import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
-// import org.apache.commons.imaging.formats.tiff.constants.ExifTagConstants;
-// import org.apache.commons.imaging.formats.tiff.constants.GpsTagConstants;
-// import org.apache.commons.imaging.formats.tiff.write.TiffOutputDirectory;
-// import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
-// import org.apache.commons.imaging.formats.tiff.write.TiffOutputField;
-
-
 public class ImageLibrary {
 
     // Creamos una instancia Random para generar números aleatorios
@@ -108,36 +94,4 @@ public class ImageLibrary {
         graphics.dispose();
         ImageIO.write(image, format, new File(path));
     }
-
-    // Método para editar los metadatos de una imagen
-    // public void editImageMetadata(String inputImagePath, String outputImagePath, String[] captureDate, double latitude, double longitude) throws IOException {
-    //     File inputFile = new File(inputImagePath);
-    //     File outputFile = new File(outputImagePath);
-    //     JpegImageMetadata metadata = (JpegImageMetadata) Imaging.getMetadata(inputFile);
-    
-    //     // Crea un TiffOutputSet basado en los metadatos existentes (si están disponibles)
-    //     TiffOutputSet outputSet = metadata == null ? new TiffOutputSet() : metadata.getExif().getOutputSet();
-    
-    //     // Establece la fecha de captura
-    //     TiffOutputDirectory exifDirectory = outputSet.getOrCreateExifDirectory();
-    //     exifDirectory.removeField(ExifTagConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
-    //     exifDirectory.add(ExifTagConstants.EXIF_TAG_DATE_TIME_ORIGINAL, captureDate);
-    
-    //     // Establece la posición GPS
-    //     TiffOutputDirectory gpsDirectory = outputSet.getOrCreateGPSDirectory();
-    //     gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LATITUDE);
-    //     gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF);
-    //     gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LONGITUDE);
-    //     gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF);
-    
-    //     gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LATITUDE, new RationalNumber[]{RationalNumber.valueOf(latitude)});
-    //     gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF, latitude >= 0 ? "N" : "S");
-    //     gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LONGITUDE, new RationalNumber[]{RationalNumber.valueOf(longitude)});
-    //     gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF, longitude >= 0 ? "E" : "W");
-    
-    //     // Escribe los nuevos metadatos en el archivo de salida
-    //     try (OutputStream os = new FileOutputStream(outputFile)) {
-    //         new ExifRewriter().updateExifMetadataLossless(inputFile, os, outputSet);
-    //     }
-    // }
 }

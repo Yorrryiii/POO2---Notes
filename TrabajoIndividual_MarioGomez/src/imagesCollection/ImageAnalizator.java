@@ -48,4 +48,9 @@ public class ImageAnalizator {
     public List<ImageInfo> filtrarPorAncho(int anchoMinimo) {
         return imagenes.stream().filter(imagen -> imagen.getAncho() >= anchoMinimo).collect(Collectors.toList());
     }
+
+    // Función para obtener la lista de imágenes
+    public List<ImageInfo> getImagenes() {
+        return imagenes;
+    }
 }
